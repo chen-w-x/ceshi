@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+	li{
+		height: 240px;
+		width: 300px;
+		background: no-repeat;	
+		float: left;
+		background-size: cover; ;
+		margin-right: 5px;
+		/*display: none;*/
+		opacity: 0
+	}
+	.on{
+		height: 100%;
+		width: 100%;
+		text-align: center;
+
+	}
+	button{
+		margin-top: 43%;
+	}
+	.max{
+		position: fixed;
+		/*position: relative;*/
+		/*z-index: 33,*/
+		left: 0;
+		top :0;
+		right: 0;
+		bottom: 0;
+		background: rgba(0,0,0,0.5);
+		display: none;
+	}
+	.picbox,img{
+		height: 300px ;
+		width: 400px;
+	}
+	.picbox{
+		overflow: hidden;
+		position: relative;
+		transform: scale(0.3);
+		/*display: none;*/
+		/*opacity: 0;*/
+	}
+	img{
+	/*display: inline-block;*/
+	float: left;
+	}
+	.box{
+		position: absolute;
+		left: 0;
+		top: 0;
+		height: 300px;
+		width: 1600px;
+
+	}
+	#btn{
+		/*display: inline-block;*/
+		position: absolute;
+		left: 20px ;
+		top :30px ;
+		z-index: 11;
+		cursor:pointer;
+	}
+
+
+	
+	</style>
+	<script src="./js/jquery-1.11.1.js"></script>
+	<script>
+		$(function () {
+			$(window).scroll(function(){
+				var top = $(window).height()+$(window).scrollTop();
+				// console.log(top)
+			
+
+
+			$('ul li').each(function(index,obj){
+
+				$(obj).css({'background':'url(./image/'+index+'.jpg','background-size':'cover'})
+			})
+			if ($('ul li').offset().top<=top) {
+				$('ul li').css({'border':'3px solid red','opacity':'1'})
+			}
+
+
+			$('button').each(function(index,obj){
+				
+				$(obj).click(function(event){
+					$('.box').css({'left':-index*400+'px'})
+					$('.max').css('display','block');
+
+					var ev=event||window.event;
+					var x=ev.clientX;
+					var y=ev.clientY;
+			
+					$('.picbox').css({'position':'absolute','left':x-200 ,'top':y-100})
+					var stop=setInterval(function(){
+					$('.picbox').css({'transition':'all .5s','left':'35%','top':'150px','transform':'scale(1)'})
+					},100)
+					setTimeout(function(){
+						clearInterval(stop)
+					},1500)
+
+
+
+					$('#btn').click(function(){
+						var stop1=setInterval(function(){
+						$('.picbox').css({'transition':'all .5s','left':x-200 ,'top':y-100,'transform':'scale(0.001)'})
+						},100)
+						setTimeout(function(){
+							$('.max').css('display','none');
+							clearInterval(stop1)
+						},600)
+					})
+				})
+			})
+		})
+	
+	})
+
+	</script>
+
+</head>
+<body>
+<pre>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+
+<ul>
+		<li>
+			<div class="on">
+				<button>dianji</button>
+			</div>
+		</li>
+		<li>
+			<div class="on">
+				<button>dianji</button>
+			</div>
+		</li>
+		<li>
+			<div class="on">
+				<button>dianji</button>
+			</div>
+		</li>
+		<li>
+			<div class="on">
+				<button>dianji</button>
+			</div>
+		</li>
+	</ul>
+
+	<pre>
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</pre>
+<div class="max">
+	<div class="picbox">
+		<p id="btn">关闭</p>
+			<div class="box">
+
+				<img src="./image/0.jpg" alt="">
+				<img src="./image/1.jpg" alt="">
+				<img src="./image/2.jpg" alt="">
+				<img src="./image/3.jpg" alt="">
+			</div>
+		</div>
+	</div>
+</body>
+</html>
